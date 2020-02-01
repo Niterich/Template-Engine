@@ -1,0 +1,27 @@
+{
+  "name": "template-engine",
+  "version": "1.0.0",
+  "description": "A CLI app for creating a team for a project",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "hello!"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Niterich/Template-Engine.git"
+  },
+  "author": "Ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Niterich/Template-Engine/issues"
+  },
+  "homepage": "https://github.com/Niterich/Template-Engine#readme",
+  "dependencies": {
+    "inquirer": "^7.0.4",
+    "jest": "^25.1.0"
+  }
+}
