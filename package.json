@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/Niterich/Template-Engine#readme",
   "dependencies": {
-    "inquirer": "^7.0.4",
+    "inquirer": "^7.0.4"
+  },
+  "devDependencies": {
     "jest": "^25.1.0"
   }
 }
