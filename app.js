@@ -72,8 +72,11 @@ inquirer
     };
 });
 
+
 // new objects are created, how do I create multiple engineer/interns? 
+    //prompt user for how many team members of each type?
     //how to save the variables as the this.id number or something unique.
+
     //what do do with the info? 
         //create a single html file and have the information populated into it?
         //create individial html files and concat somehow?
