@@ -6,8 +6,8 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 let manager;
-let eng;
-let int;
+let engineer;
+let intern;
 let teamMembersArray = [];
 
 function addEmployee() {
@@ -15,22 +15,22 @@ function addEmployee() {
         .prompt([
             {
                 type: "input",
-                message: "What is your name?",
+                message: "What is the team members name?",
                 name: "name"
             },
             {
                 type: "input",
-                message: "What is your ID number?",
+                message: "What is their ID number?",
                 name: "id"
             },
             {
                 type: "input",
-                message: "What is your email address?",
+                message: "What is their email address?",
                 name: "email"
             },
             {
                 type: "list",
-                message: "Please select your role.",
+                message: "Please select their team role.",
                 name: "title",
                 choices: ["Manager", "Engineer", "Intern"]
             }
@@ -42,7 +42,7 @@ function addEmployee() {
                     .prompt([
                         {
                             type: "input",
-                            message: "Please enter your office number.",
+                            message: "Please enter the managers office number.",
                             name: "officeNumber"
                         }
                     ])
@@ -63,19 +63,19 @@ function addEmployee() {
                     .prompt([
                         {
                             type: "input",
-                            message: "Please enter your Github username",
+                            message: "Please enter the engineers Github username",
                             name: "github"
                         }
                     ])
                     .then(res => {
-                        eng = new Engineer(
+                        engineer = new Engineer(
                             info.name,
                             info.id,
                             info.email,
                             res.github
                         );
-                        console.log(eng);
-                        teamMembersArray.push(eng);
+                        console.log(engineer);
+                        teamMembersArray.push(engineer);
                         wouldContinue();
                     });
             }
@@ -84,19 +84,19 @@ function addEmployee() {
                     .prompt([
                         {
                             type: "input",
-                            message: "Which college do/did you attend?",
+                            message: "Which college do/did the intern attend?",
                             name: "school"
                         }
                     ])
                     .then(res => {
-                        int = new Intern(
+                        intern = new Intern(
                             info.name,
                             info.id,
                             info.email,
                             res.school
                         );
-                        console.log(int);
-                        teamMembersArray.push(int);
+                        console.log(intern);
+                        teamMembersArray.push(intern);
                         wouldContinue();
                     });
             }
@@ -112,6 +112,7 @@ function wouldContinue(){
         }
     ]).then(res => {
         if (res.continue) {
+            console.log(teamMembersArray);
             addEmployee();
         } else {
             buildTeam();
@@ -119,11 +120,23 @@ function wouldContinue(){
     })
 }
 
+function buildTeam() {
+    for (let i = 0; i < teamMembersArray.length; i++) {
+        if (teamMembersArray[i].title === "Manager") {
+            //generate a manager card from the html template
+        }
+        else if (teamMembersArray[i].title === "Engineer") {
+            //generate an engineer card from the html template
+        } else {
+            //generate an intern card from the html template
+        }
+    }
+}
+
 addEmployee();
 
 
 // new objects are created, how do I create multiple engineer/interns?
-//prompt user for how many team members of each type?
 //how to save the variables as the this.id number or something unique.
 
 //what do do with the info?
