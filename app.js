@@ -135,15 +135,12 @@ function buildTeam() {
 
 addEmployee();
 
-
-// new objects are created, how do I create multiple engineer/interns?
-//how to save the variables as the this.id number or something unique.
-
-//what do do with the info?
-//create a single html file and have the information populated into it?
-//create individial html files and concat somehow?
-
 //to-do
-    //write templates
-    //create templates
     //build team function
+        // 1.) create new "team.html" file (function)
+        // 2.) inside each condition, generateHtml (card) for each specific role.
+            // a.) create a generateHtml function that makes the card html for each role. genManagerCard, genEngineerCard, etc.
+        // 3.) inside each condition, fs.appendFile the new html cards to the "team.html" file.
+        // 4.) "team.html" file should be populated with all the current team data. The file will be overwritten every time the app runs.
+
+        // doing the html creation functions inside the app.js file will allow for easy use of template literals
