@@ -102,6 +102,78 @@ function addEmployee() {
         });
 }
 
+//addEmployee function AFTER a manager has been chosen, to ensure only one manager per team
+function addEngOrInt() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What is the team members name?",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "What is their ID number?",
+                name: "id"
+            },
+            {
+                type: "input",
+                message: "What is their email address?",
+                name: "email"
+            },
+            {
+                type: "list",
+                message: "Please select their team role.",
+                name: "title",
+                choices: ["Engineer", "Intern"]
+            }
+        ])
+        .then(res => {
+            const info = res;
+            if (info.title === "Engineer") {
+                inquirer
+                    .prompt([
+                        {
+                            type: "input",
+                            message:
+                                "Please enter the engineers Github username",
+                            name: "github"
+                        }
+                    ])
+                    .then(res => {
+                        engineer = new Engineer(
+                            info.name,
+                            info.id,
+                            info.email,
+                            res.github
+                        );
+                        teamMembersArray.push(engineer);
+                        wouldContinue();
+                    });
+            }
+            if (info.title === "Intern") {
+                inquirer
+                    .prompt([
+                        {
+                            type: "input",
+                            message: "Which college do/did the intern attend?",
+                            name: "school"
+                        }
+                    ])
+                    .then(res => {
+                        intern = new Intern(
+                            info.name,
+                            info.id,
+                            info.email,
+                            res.school
+                        );
+                        teamMembersArray.push(intern);
+                        wouldContinue();
+                    });
+            }
+        });
+}
+
 //determines if more team members will be added
 function wouldContinue() {
     inquirer
@@ -114,7 +186,7 @@ function wouldContinue() {
         ])
         .then(res => {
             if (res.continue) {
-                addEmployee();
+                addEngOrInt();
             } else {
                 const html = mainHtmlGen();
                 fs.writeFile(`./output/team.html`, html, (err, dt) => {
@@ -158,14 +230,14 @@ function mainHtmlGen(data) {
                 rel="stylesheet"
                 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             />
-            <link rel="stylesheet" href="style.css" />
+            <link rel="stylesheet" href="../templates/style.css" />
         </head>
         <body>
             <div class="jumbotron">
                 <h1 class="header text-center">My Team!</h1>
             </div>
-            <div class="container"
-                <div class="row"
+            <div class="container">
+                <div class="row">
                     ${buildTeam()}
                 </div>
             </div>
