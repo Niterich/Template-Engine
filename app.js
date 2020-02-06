@@ -185,8 +185,13 @@ function wouldContinue() {
             }
         ])
         .then(res => {
+            let hasManager = teamMembersArray.some( array => array.title === 'Manager' )
             if (res.continue) {
-                addEngOrInt();
+                if (hasManager){
+                    addEngOrInt();
+                } else {
+                    addEmployee();
+                }
             } else {
                 const html = mainHtmlGen();
                 fs.writeFile(`./output/team.html`, html, (err, dt) => {
