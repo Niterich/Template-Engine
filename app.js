@@ -10,6 +10,7 @@ let engineer;
 let intern;
 let teamMembersArray = [];
 
+//runs all the data gathering prompts to create new team members
 function addEmployee() {
     inquirer
         .prompt([
@@ -101,6 +102,7 @@ function addEmployee() {
         });
 }
 
+//determines if more team members will be added
 function wouldContinue() {
     inquirer
         .prompt([
@@ -125,6 +127,7 @@ function wouldContinue() {
         });
 }
 
+// compiles the card html as a variable to be placed inside the mainHtmlGen function
 function buildTeam() {
     let people = "";
     for (let i = 0; i < teamMembersArray.length; i++) {
@@ -142,6 +145,7 @@ function buildTeam() {
     return people;
 }
 
+//creates the main body of html that the cards will be plugged into
 function mainHtmlGen(data) {
     return `<!DOCTYPE html>
     <html lang="en">
@@ -170,6 +174,7 @@ function mainHtmlGen(data) {
     </html>`;
 }
 
+//creates the manager card
 function genManagerCard(data) {
     return `<div class="card col-5 m-2 pb-2" style="width: 18rem;">
     <div class="card-body">
@@ -184,6 +189,7 @@ function genManagerCard(data) {
 </div>`;
 }
 
+//creates the engineer card
 function genEngineerCard(data) {
     return `<div class="card col-5 m-2 pb-2" style="width: 18rem;">
     <div class="card-body">
@@ -198,6 +204,7 @@ function genEngineerCard(data) {
 </div>`;
 }
 
+//creates the intern card
 function genInternCard(data) {
     return `<div class="card col-5 m-2 pb-2" style="width: 18rem;">
     <div class="card-body">
@@ -213,13 +220,3 @@ function genInternCard(data) {
 }
 
 addEmployee();
-
-//to-do
-//build team function
-// 1.) create new "team.html" file (function)
-// 2.) inside each condition, generateHtml (card) for each specific role.
-// a.) create a generateHtml function that makes the card html for each role. genManagerCard, genEngineerCard, etc.
-// 3.) inside each condition, fs.appendFile the new html cards to the "team.html" file.
-// 4.) "team.html" file should be populated with all the current team data. The file will be overwritten every time the app runs.
-
-// doing the html creation functions inside the app.js file will allow for easy use of template literals
